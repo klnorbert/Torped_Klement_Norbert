@@ -73,6 +73,7 @@
                     <excludes>
                         <exclude>model/*</exclude>
                         <exclude>Main.*</exclude>
+                        <exclude>ui/PrintWrapper.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
