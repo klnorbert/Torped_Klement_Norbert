@@ -10,9 +10,8 @@ import java.util.List;
  * @author Klement Norbert
  */
 public class GameInputHandler {
-    /**
-     * Final
-     */
+
+     //Final!
     private final List<GameCommand> commandList;
 
     /**

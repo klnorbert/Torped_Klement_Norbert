@@ -17,9 +17,9 @@ public class MapVO {
     private final int[][] map;
 
     /**
-     * @param numberOfRows Rows Length
+     * @param numberOfRows    Rows Length
      * @param numberOfColumns Columns Length
-     * @param map Int[][] variable
+     * @param map             Int[][] variable
      */
     public MapVO(int numberOfRows, int numberOfColumns, int[][] map) {
         this.numberOfRows = numberOfRows;
@@ -27,9 +27,9 @@ public class MapVO {
         this.map = map;
     }
 
-    /**
-     * GETTER METHOD
-     */
+
+    //GETTER METHOD
+
     public int getNumberOfColumns() {
         return numberOfColumns;
     }
@@ -44,7 +44,8 @@ public class MapVO {
 
     /**
      * Override the normal equals method
-     * @param o Data
+     *
+     * @param o Objective Data
      * @return {@code true} if the o parameters is equals with the (numberOfRows,numberOfColumns,map), {@code false} otherwise
      */
     @Override
@@ -62,6 +63,7 @@ public class MapVO {
 
     /**
      * Override Normal hashcode
+     *
      * @return class hashcode
      */
     @Override
@@ -73,6 +75,7 @@ public class MapVO {
 
     /**
      * Override Normal toString
+     *
      * @return every data on this class
      */
     @Override

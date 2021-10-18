@@ -1,6 +1,5 @@
 import model.GameState;
 
-
 /**
  * <h1>Torpedo Project</h1>
  * This is the Main Method

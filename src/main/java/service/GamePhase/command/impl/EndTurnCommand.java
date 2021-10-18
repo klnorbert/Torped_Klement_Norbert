@@ -11,15 +11,16 @@ import service.GamePhase.command.GameCommand;
  * @author Klement Norbert
  */
 public class EndTurnCommand implements GameCommand {
-    /**
-     * Final!
-     */
+
+    //Final!
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ExitCommand.class);
     private static final String EXIT_COMMAND = "end turn";
     private final GameState gameState;
 
     /**
      * Constructor
+     *
      * @param gameState Game Status
      */
     public EndTurnCommand(GameState gameState) {
@@ -28,6 +29,7 @@ public class EndTurnCommand implements GameCommand {
 
     /**
      * Command interface Override
+     *
      * @param input the input as string
      * @return {@code true} if the writed string is "end turn", {@code false} otherwise
      */
@@ -40,16 +42,16 @@ public class EndTurnCommand implements GameCommand {
      * End each-player turn
      *
      * Command interface Override
+     *
      * @param input the input as string
      */
     @Override
     public void process(String input) {
         LOGGER.info("Performing end turn command");
-        if (gameState.isTurn()){
+        if (gameState.isTurn()) {
             gameState.setTurn(false);
             gameState.getPlayer2().setTurnEnd(true);
-        }
-        else{
+        } else {
             gameState.setTurn(true);
             gameState.getPlayer1().setTurnEnd(true);
         }

@@ -18,9 +18,9 @@ import java.util.regex.Pattern;
  * @author Klement Norbert
  */
 public class HitCommand implements GameCommand {
-    /**
-     * Final!
-     */
+
+    //Final!
+
     private static final Logger LOGGER = LoggerFactory.getLogger(HitCommand.class);
     private static final String HIT_COMMAND_REGEX = "^hit [A-J] [1-9]$";
     private static final String HIT_ERROR_MESSAGE = "Can't hit this position";
@@ -32,9 +32,10 @@ public class HitCommand implements GameCommand {
 
     /**
      * Constructor
-     * @param gameState Game status
+     *
+     * @param gameState    Game status
      * @param hitPerformer Hit commands executor
-     * @param mapPrinter Print the torpedo map
+     * @param mapPrinter   Print the torpedo map
      * @param printWrapper I'm lazy to write out the System.out.prinln();
      */
     public HitCommand(GameState gameState, HitPerformer hitPerformer,
@@ -47,6 +48,7 @@ public class HitCommand implements GameCommand {
 
     /**
      * Command interface Override
+     *
      * @param input a coordinates pl(A1,B4)
      * @return {@code true} if it meets the expectation, {@code false} otherwise
      */
@@ -58,14 +60,16 @@ public class HitCommand implements GameCommand {
     /**
      * the "hit" (faith xD) command sends an atom to the given coordinates
      * And start the HitPerformer
-     *
+     * <p>
      * Command interface Override
+     *
      * @param input a coordinates pl(A1,B4)
      */
     @Override
     public void process(String input) {
         String[] parts = input.split(" ");
-        int rowIndex = Integer.parseInt(parts[1]);//unfinished code<------------------------------A B C didn't recognized need to make one void
+        int rowIndex = Integer.parseInt(parts[1]);
+        //unfinished code<------------------------------A B C didn't recognized need to make one void
         int columnIndex = Integer.parseInt(parts[2]);
 
         LOGGER.info("Performing hit command with rowIndex = {}, columnIndex = {}", rowIndex, columnIndex);

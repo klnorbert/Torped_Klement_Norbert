@@ -1,9 +1,9 @@
 package service.ui;
 
 import model.MapVO;
-import service.util.MapUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import service.util.MapUtil;
 
 import java.util.ArrayList;
 import java.util.List;

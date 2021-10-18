@@ -12,9 +12,9 @@ import service.ui.PrintWrapper;
  * @author Klement Norbert
  */
 public class HelpCommand implements GameCommand {
-    /**
-     * FINAL!
-     */
+
+    //FINAL!
+
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultCommand.class);
     private static final String HELP_COMMAND_MESSAGE = "exit: Close the App\n" +
             "print: Print the you map and your hits\n" +
@@ -25,6 +25,7 @@ public class HelpCommand implements GameCommand {
 
     /**
      * Constructor
+     *
      * @param printWrapper Print the error message
      */
     public HelpCommand(PrintWrapper printWrapper) {
@@ -32,7 +33,7 @@ public class HelpCommand implements GameCommand {
     }
 
     /**
-     * @param input "help" String
+     * @param input "help" as String
      * @return {@code true} always, {@code false} NANI?
      */
     @Override
@@ -42,6 +43,7 @@ public class HelpCommand implements GameCommand {
 
     /**
      * Print "help command"
+     *
      * @param input stupidity
      */
     @Override

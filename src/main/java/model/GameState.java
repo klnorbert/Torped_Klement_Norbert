@@ -16,9 +16,9 @@ public class GameState {
     private boolean shouldExit;
 
     /**
-     * @param player1 Player1 Data
-     * @param player2 Player2 Data
-     * @param turn {@code true} 1Player Turn, {@code false} 2Player Turn
+     * @param player1    Player1 Data
+     * @param player2    Player2 Data
+     * @param turn       {@code true} 1Player Turn, {@code false} 2Player Turn
      * @param shouldExit exit the program
      */
     public GameState(PlayerVO player1, PlayerVO player2, boolean turn, boolean shouldExit) {
@@ -28,12 +28,12 @@ public class GameState {
         this.shouldExit = shouldExit;
     }
 
-    /**
-     * Setter
-     */
+    //Setter
+
     public void setTurn(boolean turn) {
         Turn = turn;
     }
+
     public void setPlayer1(PlayerVO player1) {
         Player1 = player1;
     }
@@ -46,9 +46,8 @@ public class GameState {
         this.shouldExit = shouldExit;
     }
 
-    /**
-     * Getter
-     */
+    //Getter
+
     public boolean isTurn() {
         return Turn;
     }
@@ -67,6 +66,7 @@ public class GameState {
 
     /**
      * Override Normal toString
+     *
      * @return every data on this class
      */
     @Override
@@ -102,9 +102,9 @@ public class GameState {
             return Turn;
         }
 
-        /**
-         * Setter
-         */
+
+        //Setter
+
         public void setPlayer1(PlayerVO player1) {
             Player1 = player1;
         }
@@ -117,9 +117,9 @@ public class GameState {
             this.shouldExit = shouldExit;
         }
 
-        /**
-         * Getter
-         */
+
+        //Getter
+
         public PlayerVO getPlayer1() {
             return Player1;
         }

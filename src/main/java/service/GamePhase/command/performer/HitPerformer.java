@@ -14,7 +14,7 @@ public class HitPerformer {
 
     /**
      * Writes a number to a given position into the provided map.
-     * <p>
+     *
      * A write can only be performed, if there is no fixed number at
      * the requested position.
      *

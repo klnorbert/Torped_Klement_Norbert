@@ -11,9 +11,9 @@ import service.ui.MapPrinter;
  * of the game map.
  */
 public class PrintCommand implements GameCommand {
-    /**
-     * Final!
-     */
+
+    //Final!
+
     private static final Logger LOGGER = LoggerFactory.getLogger(PrintCommand.class);
     private static final String PRINT_COMMAND = "print";
 
@@ -21,8 +21,7 @@ public class PrintCommand implements GameCommand {
     private final MapPrinter mapPrinter;
 
     /**
-     *
-     * @param gameState Game Status
+     * @param gameState  Game Status
      * @param mapPrinter Print the error message
      */
     public PrintCommand(GameState gameState, MapPrinter mapPrinter) {
@@ -32,6 +31,7 @@ public class PrintCommand implements GameCommand {
 
     /**
      * Command interface Override
+     *
      * @param input the input as string
      * @return {@code true} if the writed string is "print", {@code false} otherwise
      */
@@ -42,8 +42,9 @@ public class PrintCommand implements GameCommand {
 
     /**
      * print the map
-     *
+     * <p>
      * Command interface Override
+     *
      * @param input the input as string
      */
     @Override

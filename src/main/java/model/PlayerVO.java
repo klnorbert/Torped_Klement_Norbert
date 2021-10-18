@@ -16,10 +16,11 @@ public class PlayerVO {
 
     /**
      * Constructor
+     *
      * @param playerName Player Name
      * @param currentMap Player1 map (You see the ship)
-     * @param enemyMap Player2 map (You didn't see the ship)
-     * @param turnEnd {@code true} if you have a step, {@code false} otherwise
+     * @param enemyMap   Player2 map (You didn't see the ship)
+     * @param turnEnd    {@code true} if you have a step, {@code false} otherwise
      */
     public PlayerVO(String playerName, MapVO currentMap, MapVO enemyMap, boolean turnEnd) {
         PlayerName = playerName;
@@ -28,9 +29,9 @@ public class PlayerVO {
         this.turnEnd = turnEnd;
     }
 
-    /**
-     * Setter
-     */
+
+    //Setter
+
     public void setCurrentMap(MapVO currentMap) {
         this.currentMap = currentMap;
     }
@@ -43,9 +44,9 @@ public class PlayerVO {
         this.turnEnd = turnEnd;
     }
 
-    /**
-     * Getter
-     */
+
+    //Getter
+
     public boolean isTurnEnd() {
         return turnEnd;
     }
@@ -64,13 +65,18 @@ public class PlayerVO {
 
     /**
      * Override the normal equals method
+     *
      * @param o Data
      * @return {@code true} if the o parameters is equals with the (numberOfRows,numberOfColumns,map), {@code false} otherwise
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         PlayerVO playerVO = (PlayerVO) o;
         return Objects.equals(PlayerName, playerVO.PlayerName) &&
                 Objects.equals(currentMap, playerVO.currentMap) &&
@@ -79,6 +85,7 @@ public class PlayerVO {
 
     /**
      * Override Normal hashcode
+     *
      * @return class hashcode
      */
     @Override
@@ -88,6 +95,7 @@ public class PlayerVO {
 
     /**
      * Override Normal toString
+     *
      * @return every data on this class
      */
     @Override
