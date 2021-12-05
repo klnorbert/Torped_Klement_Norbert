@@ -1,16 +1,16 @@
-package service.GamePhase.command.impl;
+package service.command.impl;
 
 import model.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.GamePhase.command.GameCommand;
+import service.command.Command;
 import service.ui.MapPrinter;
 
 /**
  * Command used to request the printing of the current state
  * of the game map.
  */
-public class PrintCommand implements GameCommand {
+public class PrintCommand implements Command {
 
     //Final!
 

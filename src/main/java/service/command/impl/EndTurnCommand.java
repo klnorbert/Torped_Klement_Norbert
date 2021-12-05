@@ -1,16 +1,16 @@
-package service.GamePhase.command.impl;
+package service.command.impl;
 
 import model.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.GamePhase.command.GameCommand;
+import service.command.Command;
 
 /**
  * Command used to exit from the game.
  *
  * @author Klement Norbert
  */
-public class EndTurnCommand implements GameCommand {
+public class EndTurnCommand implements Command {
 
     //Final!
 

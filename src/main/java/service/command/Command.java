@@ -1,4 +1,4 @@
-package service.GamePhase.command;
+package service.command;
 
 /**
  * Interface that represents a command which the user can use to
@@ -6,7 +6,7 @@ package service.GamePhase.command;
  *
  * @author Klement Norbert
  */
-public interface GameCommand {
+public interface Command {
 
     /**
      * Determines if the given input can be processed by the command.
