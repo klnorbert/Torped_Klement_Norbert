@@ -3,6 +3,7 @@ package service.ui;
 import model.MapVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import service.util.CollectionUtil;
 import service.util.MapUtil;
 
 import java.util.ArrayList;
@@ -20,21 +21,21 @@ public class MapPrinter {
      */
     private static final Logger LOGGER = LoggerFactory.getLogger(MapPrinter.class);
     private static final String HORIZONTAL_SEPARATOR = "=";
-    private static final String VERTICAL_THIN_SEPARATOR = " | ";
-    private static final String VERTICAL_THICK_SEPARATOR = " || ";
-    private static final String LEFT_SIDE_VERTICAL_THICK_SEPARATOR = "|| ";
-    private static final String RIGHT_SIDE_VERTICAL_THICK_SEPARATOR = " ||";
-
-    private final int boxWidth;
-    private final int boxHeight;
+    private static final String VERTICAL_SEPARATOR = " | ";
+    private static final String SEPARATOR = "||";
+    private static final String SHIP = "O";
+    private static final String HIT = "+";
+    private static final String DEATH = "W";
+    private static final String MISS = "X";
+    private static final String EMPTY = " ";
     private final MapUtil mapUtil;
+    private final CollectionUtil collectionUtil;
     private final PrintWrapper printWrapper;
 
-    public MapPrinter(int boxWidth, int boxHeight, MapUtil mapUtil, PrintWrapper printWrapper) {
-        this.boxWidth = boxWidth;
-        this.boxHeight = boxHeight;
+    public MapPrinter(MapUtil mapUtil, CollectionUtil collectionUtil, PrintWrapper printWrapper) {
         this.mapUtil = mapUtil;
         this.printWrapper = printWrapper;
+        this.collectionUtil = collectionUtil;
     }
 
     /**
@@ -43,24 +44,25 @@ public class MapPrinter {
      */
     public void printMap(MapVO currentMap, MapVO enemyMap) {
         LOGGER.info("Printing map to stdout");
-        printWrapper.printLine((getSeparator(HORIZONTAL_SEPARATOR, getSeparatorWidth(currentMap))));
-
-        for (int rowIndex = 0; rowIndex < currentMap.getNumberOfRows(); rowIndex++) {
-            String rowToPrint = getRowToPrint(currentMap, rowIndex);
-            printWrapper.printLine(rowToPrint);
-
-            if (shouldPrintHorizontalSeparator(rowIndex)) {
-                printWrapper.printLine((getSeparator(HORIZONTAL_SEPARATOR, getSeparatorWidth(currentMap))));
-            }
+        String Cordinate = "";
+        for (int columnIndex = 0; columnIndex < currentMap.getNumberOfColumns(); columnIndex++) {
+            Cordinate=Cordinate+collectionUtil.IntToCordinate(columnIndex)+", ";
         }
+        printWrapper.printLine("  "+Cordinate+SEPARATOR+"   "+Cordinate + SEPARATOR);
+        for (int rowIndex = 0; rowIndex < currentMap.getNumberOfRows(); rowIndex++) {
+            String rowToPrint = getRowToPrint(currentMap, enemyMap, rowIndex);
+            printWrapper.printLine(rowToPrint);
+        }
+        printWrapper.printLine((getSeparator(HORIZONTAL_SEPARATOR, getSeparatorWidth(currentMap))));
     }
 
-    private String getRowToPrint(MapVO mapVO, int rowIndex) {
-        List<String> row = getRowAsStringList(mapVO, rowIndex);
-        List<List<String>> boxPartsList = getBoxPartsOfRow(row);
-        List<String> boxParts = joinBoxParts(boxPartsList);
-
-        return LEFT_SIDE_VERTICAL_THICK_SEPARATOR + String.join(VERTICAL_THICK_SEPARATOR, boxParts) + RIGHT_SIDE_VERTICAL_THICK_SEPARATOR;
+    private String getRowToPrint(MapVO current,MapVO enemy, int rowIndex) {
+        List<String> row = getRowAsStringList(current, rowIndex);
+        List<String> currentmap = joinBoxParts(row);
+        row = getRowAsStringList(enemy, rowIndex);
+        List<String> enemymap = joinBoxParts(row);
+        int index = rowIndex+1;
+        return index +" " + String.join(", ", currentmap) + ", "+SEPARATOR + " " + index + " " + String.join(", ", enemymap)+ ", " + SEPARATOR;//dsafgfgfgf
     }
 
     private List<String> getRowAsStringList(MapVO mapVO, int rowIndex) {
@@ -69,29 +71,9 @@ public class MapPrinter {
             .collect(Collectors.toList());
     }
 
-    private List<List<String>> getBoxPartsOfRow(List<String> row) {
-        List<List<String>> boxParts = new ArrayList<>();
-        List<String> currentBox = new ArrayList<>();
-
-        for (String s : row) {
-            currentBox.add(s);
-
-            if (currentBox.size() == boxWidth) {
-                boxParts.add(currentBox);
-                currentBox = new ArrayList<>();
-            }
-        }
-
-        if (!currentBox.isEmpty()) {
-            boxParts.add(currentBox);
-        }
-
-        return boxParts;
-    }
-
-    private List<String> joinBoxParts(List<List<String>> boxPartsList) {
+    private List<String> joinBoxParts(List<String> boxPartsList) {
         return boxPartsList.stream()
-            .map(strings -> String.join(VERTICAL_THIN_SEPARATOR, strings))
+            .map(strings -> String.join(VERTICAL_SEPARATOR, strings))
             .collect(Collectors.toList());
     }
 
@@ -104,16 +86,25 @@ public class MapPrinter {
     }
 
     private String valueToString(int value) {
-        return value == 0 ? " " : String.valueOf(value);
-    }
-
-    private boolean shouldPrintHorizontalSeparator(int rowIndex) {
-        return (rowIndex + 1) % boxHeight == 0;
+        switch(value) {
+            case 0:
+                return EMPTY;
+            case 1:
+                return MISS;
+            case 2:
+                return HIT;
+            case 3:
+                return DEATH;
+            case 4:
+                return SHIP;
+            default:
+                return String.valueOf(value);
+        }
     }
 
     private int getSeparatorWidth(MapVO mapVO) {
-        int numberOfBoxes = mapVO.getNumberOfColumns() / boxWidth;
-        return (boxWidth * 3 + (boxWidth - 1)) * numberOfBoxes + (numberOfBoxes - 1) * 2 + 4;
+        int numberOfBoxes = mapVO.getNumberOfColumns();
+        return (numberOfBoxes*2)* 3 +8;
     }
 
 }
