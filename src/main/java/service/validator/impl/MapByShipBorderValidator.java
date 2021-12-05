@@ -18,13 +18,13 @@ public class MapByShipBorderValidator implements MapValidator {
     public void validate(MapVO mapVO) throws MapValidationException {
         boolean valid= true;
         for (int i = 0; i < mapVO.getNumberOfRows(); i++) {
-            for (int j = 0; j < mapVO.getNumberOfColumns(); i++) {
+            for (int j = 0; j < mapVO.getNumberOfColumns(); j++) {
                 if(mapVO.getMap()[i][j]==2 || mapVO.getMap()[i][j]==3 || mapVO.getMap()[i][j]==4){
                     valid=validateShip(mapVO,i,j);
                 }
             }
         }
-        if (valid) {
+        if (!valid) {
             throw new InvalidShipBorderException("Invalid ship placement you cannot put two ships next to each other.");
         }
     }

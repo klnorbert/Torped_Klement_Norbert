@@ -21,7 +21,7 @@ public class MapByShipFragmentValidator implements MapValidator {
     public void validate(MapVO mapVO) throws MapValidationException {
         int fragment=0;
         for (int i = 0; i < mapVO.getNumberOfRows(); i++) {
-            for (int j = 0; j < mapVO.getNumberOfColumns(); i++) {
+            for (int j = 0; j < mapVO.getNumberOfColumns(); j++) {
                 if(mapVO.getMap()[i][j]==2 || mapVO.getMap()[i][j]==3 || mapVO.getMap()[i][j]==4){
                     fragment++;
                 }
