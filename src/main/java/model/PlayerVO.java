@@ -63,6 +63,18 @@ public class PlayerVO {
         return enemyMap;
     }
 
+    //Other Method
+
+    public void setMapToEmpty(int row,int column){
+        int[][] result = new int[row][column];
+        for(int i=0;i<row;i++){
+            for(int j=0;j<column;j++){
+                result[i][j]=0;
+            }
+        }
+        setCurrentMap(new MapVO(row,column,result));
+        setEnemyMap(new MapVO(row,column,result));
+    }
     /**
      * Override the normal equals method
      *

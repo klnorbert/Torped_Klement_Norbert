@@ -14,6 +14,8 @@ public class GameState {
     private PlayerVO Player2;
     private boolean Turn;
     private boolean shouldExit;
+    private int shipfragment;
+
 
     /**
      * @param player1    Player1 Data
@@ -21,11 +23,12 @@ public class GameState {
      * @param turn       {@code true} 1Player Turn, {@code false} 2Player Turn
      * @param shouldExit exit the program
      */
-    public GameState(PlayerVO player1, PlayerVO player2, boolean turn, boolean shouldExit) {
-        Player1 = player1;
-        Player2 = player2;
-        Turn = turn;
+    public GameState(PlayerVO player1, PlayerVO player2, boolean turn, boolean shouldExit, int shipfragment) {
+        this.Player1 = player1;
+        this.Player2 = player2;
+        this.Turn = turn;
         this.shouldExit = shouldExit;
+        this.shipfragment=shipfragment;
     }
 
     //Setter
@@ -46,6 +49,9 @@ public class GameState {
         this.shouldExit = shouldExit;
     }
 
+    public void setShipfragment(int shipfragment) {
+        this.shipfragment = shipfragment;
+    }
     //Getter
 
     public boolean isTurn() {
@@ -64,6 +70,9 @@ public class GameState {
         return shouldExit;
     }
 
+    public int getShipfragment() {
+        return shipfragment;
+    }
     /**
      * Override Normal toString
      *
@@ -86,6 +95,7 @@ public class GameState {
         private PlayerVO Player2;
         private boolean Turn;
         private boolean shouldExit;
+        private int shipfragment;
 
         private GameStateBuilder() {
         }
@@ -117,6 +127,9 @@ public class GameState {
             this.shouldExit = shouldExit;
         }
 
+        public void setShipfragment(int shipfragment) {
+            this.shipfragment = shipfragment;
+        }
 
         //Getter
 
@@ -130,6 +143,10 @@ public class GameState {
 
         public boolean isShouldExit() {
             return shouldExit;
+        }
+
+        public int getShipfragment() {
+            return shipfragment;
         }
 
         public GameStateBuilder withPlayer1Map(PlayerVO Player1) {
@@ -148,7 +165,7 @@ public class GameState {
         }
 
         public GameState build() {
-            return new GameState(Player1, Player2, Turn, shouldExit);
+            return new GameState(Player1, Player2, Turn, shouldExit,shipfragment);
         }
     }
 }
