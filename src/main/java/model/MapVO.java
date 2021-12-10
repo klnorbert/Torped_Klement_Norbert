@@ -9,14 +9,16 @@ import java.util.Objects;
  * @author Klement Norbert
  */
 public class MapVO {
-    /**
-     * Final!
-     */
+
+    //Final!
+
+    private final int[][] map;
     private final int numberOfRows;
     private final int numberOfColumns;
-    private final int[][] map;
 
     /**
+     * Constructor.
+     *
      * @param numberOfRows    Rows Length
      * @param numberOfColumns Columns Length
      * @param map             Int[][] variable
@@ -43,7 +45,7 @@ public class MapVO {
     }
 
     /**
-     * Override the normal equals method
+     * Override the normal equals method.
      *
      * @param o Objective Data
      * @return {@code true} if the o parameters is equals with the (numberOfRows,numberOfColumns,map), {@code false} otherwise
@@ -58,50 +60,32 @@ public class MapVO {
         }
         MapVO mapBasic = (MapVO) o;
         return numberOfRows == mapBasic.numberOfRows &&
-                numberOfColumns == mapBasic.numberOfColumns && Arrays.equals(map, mapBasic.map);
+                numberOfColumns == mapBasic.numberOfColumns && Arrays.deepEquals(map, mapBasic.map);
     }
 
     /**
-     * Override Normal hashcode
+     * Override Normal hashcode.
      *
      * @return class hashcode
      */
     @Override
     public int hashCode() {
         int result = Objects.hash(numberOfRows, numberOfColumns);
-        result = 31 * result + Arrays.hashCode(map);
+        result = 31 * result + Arrays.deepHashCode(map);
         return result;
     }
 
     /**
-     * Override Normal toString
+     * Override Normal toString.
      *
      * @return every data on this class
      */
     @Override
     public String toString() {
-        return "MapBasic{" +
-                "numberOfRows=" + numberOfRows +
+        return "MapVO{" +
+                "map=" + Arrays.toString(map) +
+                ", numberOfRows=" + numberOfRows +
                 ", numberOfColumns=" + numberOfColumns +
-                ", map=" + Arrays.toString(map) +
                 '}';
-    }
-
-    /**
-     * Get the data and returns the data to be copied
-     *
-     * @param array int[][] data
-     * @return copy every data in array to this int[][]
-     */
-    private int[][] deepCopy(int[][] array) {
-        int[][] result = null;
-
-        if (array != null) {
-            result = new int[array.length][];
-            for (int i = 0; i < array.length; i++) {
-                result[i] = Arrays.copyOf(array[i], array[i].length);
-            }
-        }
-        return result;
     }
 }

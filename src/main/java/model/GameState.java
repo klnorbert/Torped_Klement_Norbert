@@ -10,80 +10,119 @@ public class GameState {
         return new GameStateBuilder();
     }
 
-    private PlayerVO Player1;
-    private PlayerVO Player2;
-    private boolean Turn;
+    private PlayerVO player1;
+    private PlayerVO player2;
+    private boolean turn;
     private boolean shouldExit;
-    private int shipfragment;
+    private boolean empty;
+    private int shipFragment;
+    private boolean shipPlace;
+    private int shipFootage;
 
 
     /**
+     * Constructor.
+     *
      * @param player1    Player1 Data
      * @param player2    Player2 Data
-     * @param turn       {@code true} 1Player Turn, {@code false} 2Player Turn
-     * @param shouldExit exit the program
+     * @param empty player1 and player2 data is empty
      */
-    public GameState(PlayerVO player1, PlayerVO player2, boolean turn, boolean shouldExit, int shipfragment) {
-        this.Player1 = player1;
-        this.Player2 = player2;
-        this.Turn = turn;
-        this.shouldExit = shouldExit;
-        this.shipfragment=shipfragment;
+    public GameState(PlayerVO player1, PlayerVO player2, boolean empty) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.turn = true;
+        this.shouldExit = false;
+        this.shipFragment = 0;
+        this.shipPlace = false;
+        this.empty = empty;
+        this.shipFootage = 0;
     }
 
     //Setter
 
+
+    public void setShipFootage(int shipFootage) {
+        this.shipFootage = shipFootage;
+    }
+
+    public void setShipPlace(boolean shipPlace) {
+        this.shipPlace = shipPlace;
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
+    }
+
     public void setTurn(boolean turn) {
-        Turn = turn;
+        this.turn = turn;
     }
 
     public void setPlayer1(PlayerVO player1) {
-        Player1 = player1;
+        this.player1 = player1;
     }
 
     public void setPlayer2(PlayerVO player2) {
-        Player2 = player2;
+        this.player2 = player2;
     }
 
     public void setShouldExit(boolean shouldExit) {
         this.shouldExit = shouldExit;
     }
 
-    public void setShipfragment(int shipfragment) {
-        this.shipfragment = shipfragment;
+    public void setShipFragment(int shipFragment) {
+        this.shipFragment = shipFragment;
     }
     //Getter
 
+
+    public int getShipFootage() {
+        return shipFootage;
+    }
+
+    public boolean isShipPlace() {
+        return shipPlace;
+    }
+
+    public boolean isEmpty() {
+        return empty;
+    }
+
     public boolean isTurn() {
-        return Turn;
+        return turn;
     }
 
     public PlayerVO getPlayer1() {
-        return Player1;
+        return player1;
     }
 
     public PlayerVO getPlayer2() {
-        return Player2;
+        return player2;
     }
 
     public boolean isShouldExit() {
-        return shouldExit;
+        return !shouldExit;
     }
 
-    public int getShipfragment() {
-        return shipfragment;
+    public int getShipFragment() {
+        return shipFragment;
     }
+
     /**
-     * Override Normal toString
+     * Override Normal toString.
      *
      * @return every data on this class
      */
     @Override
     public String toString() {
         return "GameState{" +
-                ", Player1=" + Player1 +
-                ", Player2=" + Player2 +
+                "player1=" + player1 +
+                ", player2=" + player2 +
+                ", turn=" + turn +
                 ", shouldExit=" + shouldExit +
+                ", empty=" + empty +
+                ", shipFragment=" + shipFragment +
+                ", shipPlace=" + shipPlace +
+                ", shipFootage=" + shipFootage +
                 '}';
     }
 
@@ -91,11 +130,12 @@ public class GameState {
      * Builder for {@link GameState}.
      */
     public static final class GameStateBuilder {
-        private PlayerVO Player1;
-        private PlayerVO Player2;
-        private boolean Turn;
+        private PlayerVO player1;
+        private PlayerVO player2;
+        private boolean turn;
         private boolean shouldExit;
-        private int shipfragment;
+        private int shipFragment;
+        private boolean empty;
 
         private GameStateBuilder() {
         }
@@ -104,58 +144,66 @@ public class GameState {
             return new GameStateBuilder();
         }
 
-        public void setTurn(boolean turn) {
-            Turn = turn;
-        }
-
-        public boolean isTurn() {
-            return Turn;
-        }
-
 
         //Setter
 
+        public void setEmpty(boolean empty) {
+            this.empty = empty;
+        }
+
+        public void setTurn(boolean turn) {
+            this.turn = turn;
+        }
+
         public void setPlayer1(PlayerVO player1) {
-            Player1 = player1;
+            this.player1 = player1;
         }
 
         public void setPlayer2(PlayerVO player2) {
-            Player2 = player2;
+            this.player2 = player2;
         }
 
         public void setShouldExit(boolean shouldExit) {
             this.shouldExit = shouldExit;
         }
 
-        public void setShipfragment(int shipfragment) {
-            this.shipfragment = shipfragment;
+        public void setShipFragment(int shipFragment) {
+            this.shipFragment = shipFragment;
         }
 
         //Getter
 
+        public boolean isEmpty() {
+            return empty;
+        }
+
+        public boolean isTurn() {
+            return turn;
+        }
+
         public PlayerVO getPlayer1() {
-            return Player1;
+            return player1;
         }
 
         public PlayerVO getPlayer2() {
-            return Player2;
+            return player2;
         }
 
         public boolean isShouldExit() {
             return shouldExit;
         }
 
-        public int getShipfragment() {
-            return shipfragment;
+        public int getShipFragment() {
+            return shipFragment;
         }
 
-        public GameStateBuilder withPlayer1Map(PlayerVO Player1) {
-            this.Player1 = Player1;
+        public GameStateBuilder withPlayer1Map(PlayerVO player1) {
+            this.player1 = player1;
             return this;
         }
 
-        public GameStateBuilder withPlayer2Map(PlayerVO Player2) {
-            this.Player2 = Player2;
+        public GameStateBuilder withPlayer2Map(PlayerVO player2) {
+            this.player2 = player2;
             return this;
         }
 
@@ -165,7 +213,7 @@ public class GameState {
         }
 
         public GameState build() {
-            return new GameState(Player1, Player2, Turn, shouldExit,shipfragment);
+            return new GameState(player1, player2, empty);
         }
     }
 }
