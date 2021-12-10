@@ -1,4 +1,4 @@
-package service.command.impl;
+package service.command.impl.stat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,23 +11,27 @@ import service.ui.PrintWrapper;
  *
  * @author Klement Norbert
  */
-public class DefaultCommand implements Command {
-    /**
-     * FINAL!
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultCommand.class);
+public class DefaultCommandStat implements Command {
+
+    //Final!
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultCommandStat.class);
     private static final String UNKNOWN_COMMAND_MESSAGE = "Unknown command";
     private final PrintWrapper printWrapper;
+
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param printWrapper Print the error message
      */
-    public DefaultCommand(PrintWrapper printWrapper) {
+    public DefaultCommandStat(PrintWrapper printWrapper) {
         this.printWrapper = printWrapper;
     }
 
     /**
-     * @param input stupidity
+     * Command interface Override.
+     *
+     * @param input user writes something
      * @return {@code true} always, {@code false} NANI?
      */
     @Override
@@ -36,8 +40,11 @@ public class DefaultCommand implements Command {
     }
 
     /**
-     * Print "Unknown command"
-     * @param input stupidity
+     * Print Unknown command.
+     * <p>
+     * Command interface Override.
+     *
+     * @param input something
      */
     @Override
     public void process(String input) {

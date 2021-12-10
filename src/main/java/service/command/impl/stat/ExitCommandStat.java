@@ -1,4 +1,4 @@
-package service.command.impl;
+package service.command.impl.stat;
 
 import model.GameState;
 import org.slf4j.Logger;
@@ -6,30 +6,32 @@ import org.slf4j.LoggerFactory;
 import service.command.Command;
 
 /**
- * Command used to exit from the game.
+ * Command used to exit from the game. {@link Command}
  *
  * @author Klement Norbert
  */
-public class ExitCommand implements Command {
-    /**
-     * Final!
-     */
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExitCommand.class);
+public class ExitCommandStat implements Command {
+
+    //Final!
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExitCommandStat.class);
     private static final String EXIT_COMMAND = "exit";
     private final GameState gameState;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param gameState Game Status
      */
-    public ExitCommand(GameState gameState) {
+    public ExitCommandStat(GameState gameState) {
         this.gameState = gameState;
     }
 
     /**
-     * Command interface Override
-     * @param input the input as string
-     * @return {@code true} if the writed string is "exit", {@code false} otherwise
+     * Command interface Override.
+     *
+     * @param input user writes something
+     * @return {@code true} if the user wrote the following "exit", {@code false} otherwise
      */
     @Override
     public boolean canProcess(String input) {
@@ -37,10 +39,11 @@ public class ExitCommand implements Command {
     }
 
     /**
-     * Exit The Game
+     * Exit The Game.
+     * <p>
+     * Command interface Override.
      *
-     * Command interface Override
-     * @param input the input as string
+     * @param input "exit" as String
      */
     @Override
     public void process(String input) {

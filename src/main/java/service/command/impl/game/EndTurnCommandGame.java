@@ -1,37 +1,41 @@
-package service.command.impl;
+package service.command.impl.game;
 
 import model.GameState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.command.Command;
+import service.ui.PrintWrapper;
 
 /**
- * Command used to exit from the game.
+ * Command used to end the turn each-player from the game. {@link Command}
  *
  * @author Klement Norbert
  */
-public class EndTurnCommand implements Command {
+public class EndTurnCommandGame implements Command {
 
     //Final!
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExitCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EndTurnCommandGame.class);
     private static final String EXIT_COMMAND = "end turn";
     private final GameState gameState;
+    private final PrintWrapper printWrapper;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param gameState Game Status
+     * @param gameState    Game Status
+     * @param printWrapper print line
      */
-    public EndTurnCommand(GameState gameState) {
+    public EndTurnCommandGame(GameState gameState, PrintWrapper printWrapper) {
         this.gameState = gameState;
+        this.printWrapper = printWrapper;
     }
 
     /**
-     * Command interface Override
+     * Command interface Override.
      *
-     * @param input the input as string
-     * @return {@code true} if the writed string is "end turn", {@code false} otherwise
+     * @param input user writes something
+     * @return {@code true} if the user wrote the following "end turn", {@code false} otherwise
      */
     @Override
     public boolean canProcess(String input) {
@@ -39,15 +43,16 @@ public class EndTurnCommand implements Command {
     }
 
     /**
-     * End each-player turn
+     * End each-player turn.
+     * <p>
+     * Command interface Override.
      *
-     * Command interface Override
-     *
-     * @param input the input as string
+     * @param input "end turn" as String
      */
     @Override
     public void process(String input) {
         LOGGER.info("Performing end turn command");
+        printWrapper.cleanConsol();
         if (gameState.isTurn()) {
             gameState.setTurn(false);
             gameState.getPlayer2().setTurnEnd(true);

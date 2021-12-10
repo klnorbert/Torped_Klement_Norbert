@@ -1,4 +1,4 @@
-package service.command.impl;
+package service.command.impl.game;
 
 import model.GameState;
 import org.slf4j.Logger;
@@ -8,32 +8,36 @@ import service.ui.MapPrinter;
 
 /**
  * Command used to request the printing of the current state
- * of the game map.
+ * of the game map. {@link Command}
+ *
+ * @author Klement Norbert
  */
-public class PrintCommand implements Command {
+public class PrintCommandGame implements Command {
 
     //Final!
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PrintCommand.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PrintCommandGame.class);
     private static final String PRINT_COMMAND = "print";
 
     private final GameState gameState;
     private final MapPrinter mapPrinter;
 
     /**
+     * Constructor.
+     *
      * @param gameState  Game Status
      * @param mapPrinter Print the error message
      */
-    public PrintCommand(GameState gameState, MapPrinter mapPrinter) {
+    public PrintCommandGame(GameState gameState, MapPrinter mapPrinter) {
         this.gameState = gameState;
         this.mapPrinter = mapPrinter;
     }
 
     /**
-     * Command interface Override
+     * Command interface Override.
      *
-     * @param input the input as string
-     * @return {@code true} if the writed string is "print", {@code false} otherwise
+     * @param input user writes something
+     * @return {@code true} if the user wrote the following "print", {@code false} otherwise
      */
     @Override
     public boolean canProcess(String input) {
@@ -41,11 +45,11 @@ public class PrintCommand implements Command {
     }
 
     /**
-     * print the map
+     * print two map (current and the enemy map).
      * <p>
-     * Command interface Override
+     * Command interface Override.
      *
-     * @param input the input as string
+     * @param input "print" input as String
      */
     @Override
     public void process(String input) {

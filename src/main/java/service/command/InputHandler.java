@@ -15,12 +15,12 @@ public class InputHandler {
 
     /**
      * Handles an input through a list of {@link Command}s.
-     *
+     * <p>
      * Only the first applicable command will be run.
      *
      * @param input the input as a string to be handled
      */
-    public void handleInput(String input){
+    public void handleInput(String input) {
         for (Command command : commandList) {
             if (command.canProcess(input)) {
                 command.process(input);
