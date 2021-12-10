@@ -100,7 +100,7 @@ public class GameState {
     }
 
     public boolean isShouldExit() {
-        return !shouldExit;
+        return shouldExit;
     }
 
     public int getShipFragment() {
