@@ -1,4 +1,4 @@
-# NYE-Progtech Torpedó
+# Torpedó
 
 # 1 Phase (StatPhase)
 - void: new Game
